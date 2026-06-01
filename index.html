@@ -1395,10 +1395,15 @@ img { max-width:100%; display:block; }
       <div class="video-sub-section">
         <h3 class="video-sub-title">网式雾化器宣传视频</h3>
         <div class="video-grid">
-          <div class="video-card" style="grid-column:1/-1;display:flex;align-items:center;justify-content:center;min-height:200px;background:transparent;border:2px dashed #e2e8f0;">
-            <div style="text-align:center;padding:30px;">
-              <div style="font-size:32px;margin-bottom:8px;opacity:0.4;">🎬</div>
-              <p style="color:var(--text-secondary);font-size:13px;">即将上线，敬请期待</p>
+          <div class="video-card has-video" onclick="openVideoModal('w311-promo.mp4','网式雾化器 W311 宣传视频')">
+            <div class="video-thumb" style="background:#000;">
+              <video src="w311-promo.mp4" muted preload="metadata"></video>
+              <div class="video-play">▶</div>
+              <div class="video-duration">-</div>
+            </div>
+            <div class="video-info">
+              <h4>网式雾化器 W311</h4>
+              <p>网式雾化器产品宣传片</p>
             </div>
           </div>
         </div>
