@@ -274,6 +274,34 @@ img { max-width:100%; display:block; }
   color:#fff; font-size:18px; font-weight:700; margin-bottom:12px; text-align:center;
 }
 
+/* PDF Modal */
+.pdf-modal {
+  display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:9998;
+  background:rgba(0,0,0,0.85); flex-direction:column;
+}
+.pdf-modal.show { display:flex; }
+.pdf-modal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 24px; background:rgba(255,255,255,0.08); flex-shrink:0;
+}
+.pdf-modal-back {
+  display:inline-flex; align-items:center; gap:6px; padding:8px 18px;
+  border-radius:8px; background:rgba(255,255,255,0.12); color:#fff; font-size:14px;
+  font-weight:600; border:none; cursor:pointer; transition:background 0.2s;
+}
+.pdf-modal-back:hover { background:rgba(255,255,255,0.22); }
+.pdf-modal-title-text {
+  color:#fff; font-size:15px; font-weight:600; margin:0;
+}
+.pdf-modal-body {
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:8px 16px 16px; min-height:0;
+}
+.pdf-modal-iframe {
+  width:100%; height:100%; max-width:1100px; border:none; border-radius:10px;
+  background:#fff;
+}
+
 /* ========== ADVANTAGE ========== */
 .advantage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .adv-card { padding:32px; border-radius:16px; background:var(--gray-50); transition:all 0.3s; text-align:center; }
@@ -585,7 +613,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">热销款</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500AW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -608,7 +636,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">热销款</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500BW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -631,7 +659,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">直流变频</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500C 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -654,7 +682,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">VPSA工艺</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500CW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -677,7 +705,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">VPSA工艺</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X550CW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -700,7 +728,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">大流量款</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500W 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -723,7 +751,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge orange">出口款</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X500EW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -746,7 +774,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge orange">出口大流量款</span>
-              <a class="model-manual" href="manuals/oxygen-concentrator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/oxygen-concentrator-manual.pdf','X550EW 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -807,7 +835,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">热销款</span>
-              <a class="model-manual" href="manuals/compressor-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/compressor-nebulizer-manual.pdf','W201A 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -830,7 +858,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">升级款</span>
-              <a class="model-manual" href="manuals/compressor-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/compressor-nebulizer-manual.pdf','W202A 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -853,7 +881,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge orange">全套雾化装置</span>
-              <a class="model-manual" href="manuals/compressor-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/compressor-nebulizer-manual.pdf','W203A / W203B 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -876,7 +904,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">海外版</span>
-              <a class="model-manual" href="manuals/compressor-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/compressor-nebulizer-manual.pdf','海外 W201B 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -902,7 +930,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">可穿戴</span>
-              <a class="model-manual" href="manuals/mesh-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/mesh-nebulizer-manual.pdf','W301 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -923,7 +951,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">热销款</span>
-              <a class="model-manual" href="manuals/mesh-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/mesh-nebulizer-manual.pdf','W311 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -944,7 +972,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">儿童款</span>
-              <a class="model-manual" href="manuals/mesh-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/mesh-nebulizer-manual.pdf','W316 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -965,7 +993,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge orange">可调节</span>
-              <a class="model-manual" href="manuals/mesh-nebulizer-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/mesh-nebulizer-manual.pdf','W313 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1021,7 +1049,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">医用级吸引</span>
-              <a class="model-manual" href="manuals/T201A-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/T201A-manual.pdf','T201A 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1044,7 +1072,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">无级调压</span>
-              <a class="model-manual" href="manuals/T201A-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/T201A-manual.pdf','T201B 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1072,7 +1100,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">AC+DC双电源</span>
-              <a class="model-manual" href="manuals/T201A-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/T201A-manual.pdf','海外 T201D 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1095,7 +1123,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">出口专版</span>
-              <a class="model-manual" href="manuals/T201A-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/T201A-manual.pdf','海外 T202D 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1118,7 +1146,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">出口热销</span>
-              <a class="model-manual" href="manuals/T201A-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/T201A-manual.pdf','海外 T202A 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1260,7 +1288,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">三档可调</span>
-              <a class="model-manual" href="manuals/nasal-irrigator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/nasal-irrigator-manual.pdf','NC310 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1283,7 +1311,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge green">热销款</span>
-              <a class="model-manual" href="manuals/nasal-irrigator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/nasal-irrigator-manual.pdf','NC321 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -1306,7 +1334,7 @@ img { max-width:100%; display:block; }
             </div>
             <div class="model-actions">
               <span class="model-badge">易清洗消毒</span>
-              <a class="model-manual" href="manuals/nasal-irrigator-manual.pdf" target="_blank">📖 使用手册</a>
+              <a class="model-manual" href="javascript:void(0)" onclick="openPdfModal('manuals/nasal-irrigator-manual.pdf','NC330 使用手册')">📖 使用手册</a>
             </div>
           </div>
         </div>
@@ -2389,6 +2417,17 @@ function switchVideoTab(key, btn) {
     <video id="videoModalPlayer" controls autoplay style="width:100%;border-radius:12px;"></video>
   </div>
 </div>
+<!-- PDF Modal -->
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-header">
+    <button class="pdf-modal-back" onclick="closePdfModal()">← 返回</button>
+    <h3 class="pdf-modal-title-text" id="pdfModalTitle"></h3>
+    <div style="width:80px;"></div>
+  </div>
+  <div class="pdf-modal-body">
+    <iframe class="pdf-modal-iframe" id="pdfModalFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
 <script>
 function openVideoModal(src, title) {
   const modal = document.getElementById('videoModal');
@@ -2411,8 +2450,24 @@ function closeVideoModal(e) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeVideoModal(); closeCert(); }
+  if (e.key === 'Escape') { closeVideoModal(); closePdfModal(); closeCert(); }
 });
+function openPdfModal(src, title) {
+  const modal = document.getElementById('pdfModal');
+  const frame = document.getElementById('pdfModalFrame');
+  const titleEl = document.getElementById('pdfModalTitle');
+  frame.src = src + '#toolbar=0&navpanes=0';
+  titleEl.textContent = title;
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closePdfModal() {
+  const modal = document.getElementById('pdfModal');
+  const frame = document.getElementById('pdfModalFrame');
+  modal.classList.remove('show');
+  frame.src = '';
+  document.body.style.overflow = '';
+}
 </script>
 </body>
 </html>
