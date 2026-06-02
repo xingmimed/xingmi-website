@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /manuals/
+
+Sitemap: https://www.xingmimd.com/sitemap.xml
