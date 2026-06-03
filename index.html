@@ -46,7 +46,10 @@
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "availableLanguage": ["Chinese"]
+    "telephone": "+86-400-110-8655",
+    "availableLanguage": ["Chinese"],
+    "hoursAvailable": "Mo-Su 08:00-22:00",
+    "areaServed": ["CN"]
   },
   "sameAs": [
     "https://github.com/xingmimed"
@@ -601,6 +604,31 @@ img { max-width:100%; display:block; }
 .train-step h5 { font-size:14px; font-weight:700; margin-bottom:4px; }
 .train-step p { font-size:12px; color:var(--gray-600); }
 
+/* ========== SERVICE ========== */
+.service-hero { text-align:center; margin-bottom:48px; }
+.service-hero .service-badge { display:inline-block; background:linear-gradient(135deg,#E8F5E9,#C8E6C9); color:#047857; font-size:13px; font-weight:700; padding:8px 20px; border-radius:99px; margin-bottom:16px; letter-spacing:0.05em; }
+.service-24 { font-size:48px; font-weight:900; background:linear-gradient(135deg,var(--blue),var(--blue-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2; }
+.service-24 span { font-size:24px; font-weight:600; }
+.service-contact-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-bottom:48px; }
+.service-card { background:#fff; border:1px solid var(--gray-200); border-radius:16px; padding:32px; text-align:center; transition:box-shadow 0.25s,transform 0.25s; }
+.service-card:hover { box-shadow:0 12px 32px rgba(0,0,0,0.08); transform:translateY(-2px); }
+.service-card-icon { width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 16px; }
+.service-card h4 { font-size:18px; font-weight:800; margin-bottom:8px; }
+.service-card .svc-number { font-size:22px; font-weight:800; color:var(--blue); letter-spacing:0.02em; margin-bottom:4px; }
+.service-card .svc-sub { font-size:13px; color:var(--gray-500); }
+.service-card .svc-qr { width:120px; height:120px; margin:12px auto; border-radius:12px; background:var(--gray-100); display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:13px; }
+.service-card .svc-wechat-id { font-size:15px; font-weight:700; color:var(--gray-800); margin-top:4px; }
+/* ========== SERVICE CENTERS ========== */
+.service-centers { margin-top:8px; }
+.service-centers h3 { font-size:24px; font-weight:800; text-align:center; margin-bottom:8px; }
+.service-centers .svc-center-note { text-align:center; font-size:13px; color:var(--gray-500); margin-bottom:32px; }
+.svc-center-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.svc-center-card { background:#fff; border:1px solid var(--gray-200); border-radius:12px; padding:20px 16px; text-align:center; transition:box-shadow 0.2s; }
+.svc-center-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+.svc-center-card .region { font-size:15px; font-weight:700; margin-bottom:4px; }
+.svc-center-card .region-desc { font-size:12px; color:var(--gray-500); line-height:1.5; }
+.svc-center-card .region-icon { font-size:28px; margin-bottom:8px; display:block; }
+
 /* ========== CONTACT ========== */
 .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
 .contact-info h3 { font-size:24px; font-weight:800; margin-bottom:20px; }
@@ -686,6 +714,8 @@ img { max-width:100%; display:block; }
   .career-grid { grid-template-columns:1fr; }
   .job-list { grid-template-columns:1fr; }
   .contact-grid { grid-template-columns:1fr; }
+  .service-contact-cards { grid-template-columns:1fr; }
+  .svc-center-grid { grid-template-columns:1fr 1fr; }
   .training-steps { grid-template-columns:1fr 1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .train-step:not(:last-child)::after { display:none; }
@@ -695,6 +725,7 @@ img { max-width:100%; display:block; }
   .models-grid { grid-template-columns:1fr; }
   .video-grid { grid-template-columns:1fr; }
   .training-steps { grid-template-columns:1fr; }
+  .svc-center-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr; }
 }
 
@@ -736,6 +767,7 @@ img { max-width:100%; display:block; }
       <a href="#videos">产品视频</a>
       <a href="#news">新闻动态</a>
       <a href="#careers">人才招聘</a>
+      <a href="#service">售后服务</a>
       <a href="#contact">联系我们</a>
       <a href="#contact" class="nav-cta">立即咨询</a>
     </div>
@@ -2373,6 +2405,94 @@ img { max-width:100%; display:block; }
   </div>
 </section>
 
+<!-- SERVICE -->
+<section class="section" id="service" style="background:linear-gradient(180deg,#fff 0%,#F8FAFC 100%);">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">After-Sales Service</div>
+      <h2 class="section-title">售后服务与支持</h2>
+      <p class="section-subtitle">全国联保，专业团队全程护航您的呼吸健康</p>
+    </div>
+
+    <!-- Service Guarantee -->
+    <div class="service-hero">
+      <div class="service-badge">⚡ 7×24小时全天候服务保障</div>
+      <div class="service-24" style="-webkit-text-fill-color:transparent;">7<span>×</span>24<span>小时</span> <span>在线响应</span></div>
+      <p style="font-size:14px;color:var(--gray-500);margin-top:8px;">无论何时何地，我们始终在线，为您的健康呼吸保驾护航</p>
+    </div>
+
+    <!-- Contact Cards -->
+    <div class="service-contact-cards">
+      <div class="service-card">
+        <div class="service-card-icon" style="background:#EFF6FF;">📞</div>
+        <h4>全国服务热线</h4>
+        <div class="svc-number">400-110-8655</div>
+        <div class="svc-sub">0523-8686-5598</div>
+        <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">7×24小时人工接听，节假日无休</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon" style="background:#F0FDF4;">💬</div>
+        <h4>客服微信</h4>
+        <div class="svc-qr">微信二维码<br>(联系客服获取)</div>
+        <div class="svc-wechat-id">XingMiMed</div>
+        <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">专属客服一对一，工作日1小时内回复</p>
+      </div>
+    </div>
+
+    <!-- Service Centers -->
+    <div class="service-centers">
+      <h3>全国售后服务中心</h3>
+      <p class="svc-center-note">※ 以下区域由当地授权经销商提供售后支持，具体地址请致电服务热线查询</p>
+      <div class="svc-center-grid">
+        <div class="svc-center-card">
+          <span class="region-icon">🏙️</span>
+          <div class="region">华东地区</div>
+          <div class="region-desc">江苏 · 上海 · 浙江 · 安徽 · 山东</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🏛️</span>
+          <div class="region">华北地区</div>
+          <div class="region-desc">北京 · 天津 · 河北 · 山西 · 内蒙古</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🌆</span>
+          <div class="region">华南地区</div>
+          <div class="region-desc">广东 · 广西 · 海南 · 福建</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🏔️</span>
+          <div class="region">华中地区</div>
+          <div class="region-desc">湖北 · 湖南 · 河南 · 江西</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🐼</span>
+          <div class="region">西南地区</div>
+          <div class="region-desc">四川 · 重庆 · 云南 · 贵州 · 西藏</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🏯</span>
+          <div class="region">西北地区</div>
+          <div class="region-desc">陕西 · 甘肃 · 宁夏 · 青海 · 新疆</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">❄️</span>
+          <div class="region">东北地区</div>
+          <div class="region-desc">辽宁 · 吉林 · 黑龙江</div>
+        </div>
+        <div class="svc-center-card">
+          <span class="region-icon">🌏</span>
+          <div class="region">海外服务中心</div>
+          <div class="region-desc">东南亚 · 中东 · 南美 · 非洲</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;padding:20px 24px;background:#EFF6FF;border-radius:12px;font-size:13px;color:var(--gray-600);line-height:1.4;">
+        详细售后网点地址及联系方式，请拨打服务热线 <strong style="color:var(--blue);">400-110-8655</strong> 或扫码添加客服微信 <strong style="color:var(--blue);">XingMiMed</strong> 查询<br>
+        服务时间：<strong>周一至周日 8:00–22:00</strong>（春节除外）
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="container">
@@ -2452,6 +2572,7 @@ img { max-width:100%; display:block; }
       </div>
       <div class="footer-col">
         <h4>服务支持</h4>
+        <a href="#service">售后服务</a>
         <a href="#videos">产品视频</a>
         <a href="#products">产品中心</a>
         <a href="#contact">联系我们</a>
