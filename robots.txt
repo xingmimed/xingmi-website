@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /manuals/
 
-Sitemap: https://www.xingmimd.com/sitemap.xml
+Sitemap: https://xingmimed.github.io/xingmi-website/sitemap.xml
