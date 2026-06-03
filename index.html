@@ -647,6 +647,17 @@ img { max-width:100%; display:block; }
 .cert-overlay img { max-width:95vw; max-height:95vh; width:auto; height:auto; border-radius:8px; box-shadow:0 8px 40px rgba(0,0,0,0.3); }
 .cert-close { position:absolute; top:20px; right:24px; color:#fff; font-size:32px; cursor:pointer; width:40px; height:40px; display:flex; align-items:center; justify-content:center; z-index:1; transition:opacity .2s; }
 .cert-close:hover { opacity:.7; }
+/* ISO cert multi-page */
+.iso-cert-overlay { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.88); flex-direction:column; justify-content:center; align-items:center; padding:20px; }
+.iso-cert-overlay.show { display:flex; }
+.iso-cert-img-wrap { position:relative; display:flex; align-items:center; gap:16px; }
+.iso-cert-img-wrap img { max-width:80vw; max-height:82vh; width:auto; height:auto; border-radius:8px; box-shadow:0 8px 40px rgba(0,0,0,0.4); cursor:default; }
+.iso-cert-nav { background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:24px; width:44px; height:44px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; flex-shrink:0; }
+.iso-cert-nav:hover { background:rgba(255,255,255,0.3); }
+.iso-cert-nav:disabled { opacity:0.3; cursor:default; }
+.iso-cert-close { position:absolute; top:16px; right:20px; color:#fff; font-size:32px; cursor:pointer; z-index:1; opacity:0.8; }
+.iso-cert-close:hover { opacity:1; }
+.iso-cert-pager { margin-top:12px; color:rgba(255,255,255,0.7); font-size:13px; letter-spacing:0.05em; }
 
 /* ========== RESPONSIVE ========== */
 @media (max-width:900px) {
@@ -2182,14 +2193,8 @@ img { max-width:100%; display:block; }
         </a>
         <a href="news-detail.html?id=202509" style="display:flex;text-decoration:none;color:inherit;">
         <div class="news-item">
-          <div class="news-item-thumb" style="background:linear-gradient(135deg,#E0F4FE,#C8EAFD);border-radius:10px;padding:8px;">
-            <svg viewBox="0 0 64 64" fill="none">
-              <rect x="12" y="10" width="40" height="44" rx="5" fill="#4F46E5" opacity="0.12" stroke="#3730A3" stroke-width="1.2"/>
-              <text x="32" y="24" text-anchor="middle" fill="#3730A3" font-size="6" font-weight="700" font-family="sans-serif">BSI</text>
-              <text x="32" y="34" text-anchor="middle" fill="#4338CA" font-size="4.5" font-weight="600" font-family="sans-serif">ISO 13485:2016</text>
-              <rect x="22" y="42" width="20" height="8" rx="3" fill="#22D3EE" opacity="0.3"/>
-              <text x="32" y="49" text-anchor="middle" fill="#0891B2" font-size="4" font-weight="700" font-family="sans-serif">✓ CERTIFIED</text>
-            </svg>
+          <div class="news-item-thumb" style="background:#f0f4ff;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+            <img src="images/iso13485-cert-1.jpg" alt="ISO 13485证书" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" onclick="event.preventDefault();event.stopPropagation();openIsoCert();" title="点击查看证书" />
           </div>
           <div>
             <span class="news-date">2025-09</span>
@@ -2459,6 +2464,10 @@ img { max-width:100%; display:block; }
           <img src="images/domain-cert.jpg" alt="域名证书" />
           <span>域名证书</span>
         </a>
+        <a class="footer-cert" onclick="openIsoCert()" title="查看ISO 13485证书">
+          <img src="images/iso13485-cert-1.jpg" alt="ISO 13485证书" style="height:20px;width:auto;border-radius:2px;" />
+          <span>ISO 13485</span>
+        </a>
         <span>服务热线：4001108655 | 0523-86865598</span>
       </span>
     </div>
@@ -2469,6 +2478,17 @@ img { max-width:100%; display:block; }
 <div class="cert-overlay" id="certOverlay" onclick="closeCert()">
   <span class="cert-close">&times;</span>
   <img src="images/domain-cert.jpg" alt="域名证书" onclick="event.stopPropagation()" />
+</div>
+
+<!-- ISO 13485 CERTIFICATE LIGHTBOX -->
+<div class="iso-cert-overlay" id="isoCertOverlay" onclick="closeIsoCert()">
+  <span class="iso-cert-close" onclick="closeIsoCert()">&times;</span>
+  <div class="iso-cert-img-wrap" onclick="event.stopPropagation()">
+    <button class="iso-cert-nav" id="isoCertPrev" onclick="isoCertPage(-1)" disabled>&#8249;</button>
+    <img src="images/iso13485-cert-1.jpg" alt="ISO 13485证书 第1页" id="isoCertImg" />
+    <button class="iso-cert-nav" id="isoCertNext" onclick="isoCertPage(1)">&#8250;</button>
+  </div>
+  <div class="iso-cert-pager" id="isoCertPager">第 1 页 / 共 2 页</div>
 </div>
 
 <!-- PRODUCT DETAIL MODAL -->
@@ -2554,6 +2574,31 @@ function closeModal() { document.getElementById('productModal').style.display = 
 // Domain cert lightbox
 function openCert() { document.getElementById('certOverlay').classList.add('show'); document.body.style.overflow='hidden'; }
 function closeCert() { document.getElementById('certOverlay').classList.remove('show'); document.body.style.overflow=''; }
+// ISO 13485 cert lightbox
+var _isoCertCur = 1;
+var _isoCertImgs = ['images/iso13485-cert-1.jpg', 'images/iso13485-cert-2.jpg'];
+var _isoCertAlts = ['ISO 13485证书 第1页', 'ISO 13485证书 第2页'];
+function openIsoCert(page) {
+  _isoCertCur = page || 1;
+  _isoCertUpdate();
+  document.getElementById('isoCertOverlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeIsoCert() { document.getElementById('isoCertOverlay').classList.remove('show'); document.body.style.overflow=''; }
+function isoCertPage(delta) {
+  var next = _isoCertCur + delta;
+  if (next < 1 || next > _isoCertImgs.length) return;
+  _isoCertCur = next;
+  _isoCertUpdate();
+}
+function _isoCertUpdate() {
+  var i = _isoCertCur - 1;
+  document.getElementById('isoCertImg').src = _isoCertImgs[i];
+  document.getElementById('isoCertImg').alt = _isoCertAlts[i];
+  document.getElementById('isoCertPager').textContent = '第 ' + _isoCertCur + ' 页 / 共 ' + _isoCertImgs.length + ' 页';
+  document.getElementById('isoCertPrev').disabled = (_isoCertCur === 1);
+  document.getElementById('isoCertNext').disabled = (_isoCertCur === _isoCertImgs.length);
+}
 function scrollToVideo() { document.querySelector('#videos').scrollIntoView({behavior:'smooth'}); closeModal(); }
 function switchCat(key, btn) {
   document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
@@ -2658,7 +2703,7 @@ function closeVideoModal(e) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeVideoModal(); closePdfModal(); closeCert(); }
+  if (e.key === 'Escape') { closeVideoModal(); closePdfModal(); closeCert(); closeIsoCert(); }
 });
 function openPdfModal(src, title) {
   const modal = document.getElementById('pdfModal');
